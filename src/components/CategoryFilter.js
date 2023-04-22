@@ -1,10 +1,18 @@
 import React from "react";
 
-function CategoryFilter() {
+function CategoryFilter(props) {
+  const { categories, onSelectCategory, activeCategory } = props;
+
   return (
-    <div className="categories">
-      <h5>Category filters</h5>
-      {/* render <button> elements for each category here */}
+    <div>
+      <button onClick={() => onSelectCategory("All")} className={activeCategory === "All" ? "selected" : ""}>
+        All
+      </button>
+      {categories.map((category) => (
+        <button key={category} onClick={() => onSelectCategory(category)} className={activeCategory === category ? "selected" : ""}>
+          {category}
+        </button>
+      ))}
     </div>
   );
 }
